@@ -1,0 +1,59 @@
+<!--pages/home/index.wxml-->
+<view class="home-container">
+	<!-- banner -->
+	<view class="banner-wrapper">
+		<!-- 欢迎语 -->
+		<view class="title-welcome">
+			<view class="color-secondary">
+				<text>Hi, there</text>
+				<custom-image src="https://nepro.orinostudio.com/preview/assets/img/1f590.png" width="40rpx" height="40rpx" />
+			</view>
+			<text class="welcome-watch">Enjoy Watching!</text>
+		</view>
+
+		<!-- 轮播图 -->
+		<view class="swiper-wrapper">
+			<swiper bindchange="swiperChange" current="1" circular autoplay previous-margin="40rpx" next-margin="40rpx" style="height: 320rpx;">
+				<block wx:for="{{3}}" wx:key="index">
+					<swiper-item class="swiper-item">
+						<custom-image src="https://nepro.orinostudio.com/preview/assets/img/home/fsadf564.jpg" width="{{currentIndex === index ? '640rpx' : '100vw'}}" height="320rpx" radius="20rpx" />
+					</swiper-item>
+				</block>
+			</swiper>
+		</view>
+	</view>
+
+	<!-- 博主统计 -->
+	<view class="dashbord-wrapper">
+		<view class="dashbord-grop">
+			<view class="media">
+				<view class="icon-wrapper">
+					<custom-image src="https://nepro.orinostudio.com/preview/assets/img/1f590.png" width="40rpx" height="40rpx" />
+				</view>
+				<view class="media-body">
+					<view class="media-title">累计浏览</view>
+					<view class="media-desc">通过浏览来解决你的疑问</view>
+					<view class="media-count">95+ 浏览</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 文章 -->
+	<view class="article-wrapper">
+		<!-- 文章提示 -->
+		<view class="sort-title">
+			<view class="sort-desc">
+				<text class="latest-article">Latest/Browse</text>
+				<text class="latest-desc">Most recent and most viewed articles</text>
+			</view>
+			<view class="sort-tag">
+				<text class="new-gradient-anime">New!</text>
+			</view>
+		</view>
+
+		<block wx:for="{{3}}">
+			<custom-article />
+		</block>
+	</view>
+</view>

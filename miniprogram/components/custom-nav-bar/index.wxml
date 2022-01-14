@@ -1,0 +1,42 @@
+<!--components/custom-nav-bar/index.wxml-->
+<view class="custom-nav-bar">
+	<van-nav-bar
+	 fixed="{{fixed}}"
+	 placeholder="{{placeholder}}"
+	 border="{{border}}"
+	 custom-style="{{customStyle}}"
+	 title-class="title-class"
+	 title="{{title}}"
+	>
+		<view slot="left" class="left-container">
+			<view wx:if="{{isHome}}" catchtap="reLaunch" class="home">
+				<custom-image
+				 src="/assets/images/custom-nav-bar/home.png"
+				 width="48rpx"
+				 height="48rpx"
+				 show-loading="{{false}}"
+				/>
+			</view>
+			<view wx:if="{{isBack}}" catchtap="navigateBack" class="back">
+				<custom-image
+				 src="/assets/images/custom-nav-bar/back.png"
+				 width="48rpx"
+				 height="48rpx"
+				 show-loading="{{false}}"
+				/>
+			</view>
+			<view wx:if="{{isClose}}" catchtap="navigateBack" class="back">
+				<custom-image
+				 src="/assets/images/common/close.png"
+				 width="48rpx"
+				 height="48rpx"
+				 show-loading="{{false}}"
+				/>
+			</view>
+			<view wx:if="{{isSlot}}" class="navbar-comp-slot">
+				<slot/>
+			</view>
+		</view>
+	</van-nav-bar>
+</view>
+

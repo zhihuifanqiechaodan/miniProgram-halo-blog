@@ -1,0 +1,20 @@
+<!--components/custom-goods/index.wxml-->
+<view class="custom-goods">
+	<view class="goods-image">
+		<custom-image src="https://www.orinostudio.com/nepro-web/nepro/assets/img/09.jpg" width="160rpx" height="200rpx" />
+	</view>
+	<view class="product">
+		<view class="collection {{false ? 'active-collection' : ''}}">
+			<custom-image src="https://oss.fabrique.cn/166c6497-87f1-4489-acfc-13f09e9d962d" width="30rpx" height="30rpx" />
+		</view>
+		<view class="rating">
+			<view class="number">4.2</view>
+			<view class="users">9 Reviews</view>
+		</view>
+		<view class="goods-name ^line-height--18 ^van-multi-ellipsis--l2">Mens 100% Cotton Solid Color Panda Print Thin Casual T-ShirtMens 100% Cotton Solid Color Panda Print Thin Casual T-Shirt</view>
+		<view class="price">$23.00</view>
+		<view class="addCart">
+			<custom-image src="https://oss.fabrique.cn/4066df0f-1865-4080-8f38-a57d9b687915" width="56rpx" height="56rpx" />
+		</view>
+	</view>
+</view>

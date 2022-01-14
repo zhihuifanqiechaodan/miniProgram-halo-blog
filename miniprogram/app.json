@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/home/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "van-nav-bar": "@vant/weapp/nav-bar/index",
+    "custom-image": "./components/custom-image/index",
+    "custom-iconfont": "./components/custom-iconfont/index",
+    "custom-goods": "./components/custom-goods/index",
+    "custom-article": "./components/custom-article/index"
+  },
+  "sitemapLocation": "sitemap.json"
+}
