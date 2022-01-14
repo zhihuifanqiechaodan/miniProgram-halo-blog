@@ -1,8 +1,9 @@
 /* components/custom-article/index.wxss */
 .custom-article {
-  padding: 32rpx;
+  padding: 40rpx;
   background: #fff;
-  border-bottom: 2rpx solid #e5e6eb;
+  border-radius: 10rpx;
+  border-bottom: 2rpx solid #f4f5f5;
   box-sizing: border-box;
 }
 
@@ -16,6 +17,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  padding-right: 40rpx;
 }
 
 .meta-container {

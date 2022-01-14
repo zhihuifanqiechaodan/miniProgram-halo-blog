@@ -5,38 +5,23 @@
 	 placeholder="{{placeholder}}"
 	 border="{{border}}"
 	 custom-style="{{customStyle}}"
-	 title-class="title-class"
-	 title="{{title}}"
 	>
-		<view slot="left" class="left-container">
+		<view slot="left">
 			<view wx:if="{{isHome}}" catchtap="reLaunch" class="home">
-				<custom-image
-				 src="/assets/images/custom-nav-bar/home.png"
-				 width="48rpx"
-				 height="48rpx"
-				 show-loading="{{false}}"
-				/>
+				<custom-iconfont icon="" size="" />
 			</view>
 			<view wx:if="{{isBack}}" catchtap="navigateBack" class="back">
-				<custom-image
-				 src="/assets/images/custom-nav-bar/back.png"
-				 width="48rpx"
-				 height="48rpx"
-				 show-loading="{{false}}"
-				/>
+				<custom-iconfont icon="icon-leftarrow" size="48rpx" />
 			</view>
 			<view wx:if="{{isClose}}" catchtap="navigateBack" class="back">
-				<custom-image
-				 src="/assets/images/common/close.png"
-				 width="48rpx"
-				 height="48rpx"
-				 show-loading="{{false}}"
-				/>
+				<custom-iconfont icon="icon-close" size="48rpx" />
 			</view>
 			<view wx:if="{{isSlot}}" class="navbar-comp-slot">
 				<slot/>
 			</view>
 		</view>
+
+		<view slot="title" class="title">{{title}}</view>
 	</van-nav-bar>
 </view>
 

@@ -1,0 +1,11 @@
+<!--packageA/pages/article-detail/index.wxml-->
+<view class="article-detail-container">
+	<custom-nav-bar
+	 isBack="{{true}}"
+	 title="welcome"
+	 placeholder="{{true}}"
+	 customStyle="background: rgba(255, 255, 255, 1)"
+	/>
+	<custom-html content="{{articleInfo.formatContent}}" />
+</view>
+

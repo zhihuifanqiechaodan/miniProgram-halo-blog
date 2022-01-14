@@ -1,36 +1,36 @@
 <!--components/custom-article/index.wxml-->
 <view class="custom-article">
-    <view class="content-box">
-        <view class="article-wrapper">
-            <view class="meta-container">
-                <text class="categorie">技术</text>
-                <view class="dividing" />
-                <text class="date ^van-ellipsis">5天前</text>
-            </view>
-            <view class="title-row ^van-multi-ellipsis--l2 ^line-height--18">UITableViewCell加载图片优化</view>
-        </view>
-        <view class="article-image">
-            <custom-image src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/abc48c2c9a3846868444f81faff57aae~tplv-k3u1fbpfcp-no-mark:426:426:426:240.awebp?" width="240rpx" height="176rpx" />
-        </view>
-    </view>
-    <view class="footer-box">
-        <view class="action-list">
-            <view class="action-item">
-                <custom-iconfont icon="icon-browse" size="32rpx" />
-                <text>5</text>
-            </view>
-            <view class="action-item">
-                <custom-iconfont icon="icon-suggest" size="32rpx" />
-                <text>5</text>
-            </view>
-            <view class="action-item">
-                <custom-iconfont icon="icon-good" size="32rpx" />
-                <text>5</text>
-            </view>
-        </view>
-        <view class="tags-list">
-            <text class="tags-item">Node</text>
-            <text class="tags-item">JavaScript</text>
-        </view>
-    </view>
+	<view class="content-box">
+		<view class="article-wrapper">
+			<view class="meta-container">
+				<text class="categorie">{{articleInfo.categories[0].name}}</text>
+				<view class="dividing" />
+				<text class="date ^van-ellipsis">{{articleInfo.createTime}}</text>
+			</view>
+			<view class="title-row ^van-multi-ellipsis--l2 ^line-height--18">{{articleInfo.title}}</view>
+		</view>
+		<view class="article-image">
+			<custom-image src="{{articleInfo.thumbnail}}" width="240rpx" height="176rpx" />
+		</view>
+	</view>
+	<view class="footer-box">
+		<view class="action-list">
+			<view class="action-item">
+				<custom-iconfont icon="icon-browse" size="32rpx" />
+				<text>{{articleInfo.visits}}</text>
+			</view>
+			<view class="action-item">
+				<custom-iconfont icon="icon-suggest" size="32rpx" />
+				<text>{{articleInfo.commentCount}}</text>
+			</view>
+			<view class="action-item">
+				<custom-iconfont icon="icon-good" size="32rpx" />
+				<text>{{articleInfo.likes}}</text>
+			</view>
+		</view>
+		<view class="tags-list">
+			<text class="tags-item">{{articleInfo.tags[0].name}}</text>
+		</view>
+	</view>
 </view>
+

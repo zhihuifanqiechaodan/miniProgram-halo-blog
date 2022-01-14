@@ -87,7 +87,7 @@ Page({
     return getService("StatisticsService").haloGetApiContentStatistics();
   },
   /**
-   * @method haloGetApiContentStatistics 获取halo博客文章列表
+   * @method haloGetApiContentStatistics 获取halo博客文章
    * @param {*} params
    */
   haloGetApiContentPosts(params) {

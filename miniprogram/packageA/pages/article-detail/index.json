@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "custom-html": "../../../components/custom-html/index"
+  }
+}

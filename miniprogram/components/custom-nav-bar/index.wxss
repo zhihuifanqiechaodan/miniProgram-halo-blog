@@ -1,1 +1,14 @@
 /* components/custom-nav-bar/index.wxss */
+.van-nav-bar .van-nav-bar__left {
+  left: 0;
+}
+
+.custom-nav-bar .van-nav-bar__content {
+  display: flex;
+  align-items: center;
+}
+
+.home,
+.back {
+  padding: 0 40rpx;
+}

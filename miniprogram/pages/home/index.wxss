@@ -1,10 +1,13 @@
 /* pages/home/index.wxss */
 .banner-wrapper {
+  margin-bottom: 10px;
+  padding: 20px 0;
   background-color: #ffffff;
 }
 
 .title-welcome {
   padding: 0 40rpx;
+  padding-bottom: 20px;
 }
 
 .color-secondary {
@@ -20,10 +23,6 @@
   font-size: 26rpx;
 }
 
-.swiper-wrapper {
-  margin-top: 40rpx;
-}
-
 .swiper-item {
   display: flex !important;
   align-items: center !important;
@@ -31,11 +30,17 @@
   border-radius: 20rpx !important;
 }
 
+.article-wrapper {
+  background-color: #ffffff;
+}
+
 .sort-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 40rpx;
+  border-bottom: 1px solid #f4f5f5;
+  box-sizing: border-box;
 }
 
 .sort-desc {
@@ -106,6 +111,7 @@
 
 .dashbord-wrapper {
   padding: 60rpx 40rpx;
+  margin-bottom: 20rpx;
   background-color: #ffffff;
 }
 

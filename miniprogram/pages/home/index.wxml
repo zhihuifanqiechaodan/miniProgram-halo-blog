@@ -1,5 +1,6 @@
 <!--pages/home/index.wxml-->
 <view class="home-container">
+	<custom-nav-bar title="welcome" placeholder="{{true}}" customStyle="background: rgba(255, 255, 255, 1)" />
 	<!-- banner -->
 	<view class="banner-wrapper">
 		<!-- 欢迎语 -->
@@ -13,10 +14,23 @@
 
 		<!-- 轮播图 -->
 		<view class="swiper-wrapper">
-			<swiper bindchange="swiperChange" current="1" circular autoplay previous-margin="40rpx" next-margin="40rpx" style="height: 320rpx;">
+			<swiper
+			 bindchange="swiperChange"
+			 current="1"
+			 circular
+			 autoplay
+			 previous-margin="40rpx"
+			 next-margin="40rpx"
+			 style="height: 320rpx;"
+			>
 				<block wx:for="{{3}}" wx:key="index">
 					<swiper-item class="swiper-item">
-						<custom-image src="https://nepro.orinostudio.com/preview/assets/img/home/fsadf564.jpg" width="{{currentIndex === index ? '640rpx' : '100vw'}}" height="320rpx" radius="20rpx" />
+						<custom-image
+						 src="https://nepro.orinostudio.com/preview/assets/img/home/fsadf564.jpg"
+						 width="{{currentIndex === index ? '640rpx' : '100vw'}}"
+						 height="320rpx"
+						 radius="20rpx"
+						/>
 					</swiper-item>
 				</block>
 			</swiper>
@@ -24,7 +38,7 @@
 	</view>
 
 	<!-- 博主统计 -->
-	<view class="dashbord-wrapper">
+	<!-- <view class="dashbord-wrapper">
 		<view class="dashbord-grop">
 			<view class="media">
 				<view class="icon-wrapper">
@@ -37,7 +51,7 @@
 				</view>
 			</view>
 		</view>
-	</view>
+	</view> -->
 
 	<!-- 文章 -->
 	<view class="article-wrapper">
@@ -52,8 +66,13 @@
 			</view>
 		</view>
 
-		<block wx:for="{{3}}">
-			<custom-article />
-		</block>
+		<view class="article-list">
+			<block wx:for="{{articles}}" wx:key="id">
+				<custom-article articleInfo="{{item}}" />
+			</block>
+			<custom-nomore/>
+		</view>
 	</view>
+
 </view>
+
