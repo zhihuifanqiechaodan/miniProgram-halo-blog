@@ -147,6 +147,12 @@ Component({
           video: `
             width: 100%;
           `,
+          view: `
+            line-height: normal;
+          `,
+          text: `
+            line-height: normal;
+          `
         },
       });
     },

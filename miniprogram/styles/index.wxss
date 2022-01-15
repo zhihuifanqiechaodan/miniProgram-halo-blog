@@ -7,10 +7,6 @@ page {
   color: #031c24;
   background-color: #f4f5f5;
 }
-view,
-text {
-  line-height: 1;
-}
 
 .line-height--18 {
   line-height: 36rpx;

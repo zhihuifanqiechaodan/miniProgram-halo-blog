@@ -51,7 +51,6 @@
 .latest-article {
   font-size: 40rpx;
   font-weight: 600;
-  margin-bottom: 10rpx;
 }
 
 .latest-desc {
