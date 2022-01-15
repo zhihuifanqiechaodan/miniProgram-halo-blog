@@ -11,6 +11,7 @@
   }],
   "usingComponents": {
     "van-nav-bar": "@vant/weapp/nav-bar/index",
+    "van-toast": "@vant/weapp/toast/index",
     "custom-nav-bar": "./components/custom-nav-bar/index",
     "custom-image": "./components/custom-image/index",
     "custom-iconfont": "./components/custom-iconfont/index",

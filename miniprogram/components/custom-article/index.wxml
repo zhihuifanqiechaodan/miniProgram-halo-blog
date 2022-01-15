@@ -1,5 +1,5 @@
 <!--components/custom-article/index.wxml-->
-<view class="custom-article">
+<view catchtap="navigateToArticleDetail" class="custom-article">
 	<view class="content-box">
 		<view class="article-wrapper">
 			<view class="meta-container">

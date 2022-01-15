@@ -1,5 +1,5 @@
 // packageA/pages/article-detail/index.js
-const { getService } = getApp();
+const { getService, globalData } = getApp();
 
 Page({
   /**
@@ -13,6 +13,7 @@ Page({
    */
   data: {
     articleInfo: null, // 文章详情
+    userInfo: null, // 博主信息
   },
 
   /**
@@ -20,7 +21,11 @@ Page({
    */
   onLoad: function (options) {
     const { id } = options;
+    const { userInfo } = globalData;
     this._data.id = id;
+    this.setData({
+      userInfo,
+    });
     this.initData();
   },
 

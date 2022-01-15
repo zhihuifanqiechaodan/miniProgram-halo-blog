@@ -1,5 +1,8 @@
 // app.js
 import { getService } from "./api/index";
+import utils from "./utils/index";
+import router from "./utils/router";
+import { baseUrl, apiAccessKey } from "./config/index";
 
 App({
   onLaunch: function () {
@@ -29,8 +32,30 @@ App({
       const { isConnected } = value;
       this.globalData.isConnected = isConnected;
     });
+
+    this.haloGetApiContentUsersProfile();
   },
-  getService, // 封装全局请求方法
+  /**
+   * @method haloGetApiContentUsersProfile 获取halo博客用户信息
+   */
+  haloGetApiContentUsersProfile() {
+    wx.request({
+      url: `${baseUrl}/api/content/users/profile`,
+      data: {
+        api_access_key: apiAccessKey,
+      },
+      success: (value) => {
+        const { data: response } = value;
+        const { data, status } = response;
+        if (status === 200) {
+          this.globalData.userInfo = data;
+        }
+      },
+    });
+  },
+  ...utils, // 解构挂载公共方法
+  getService, // 封装挂载请求方法
+  router, // 路由表
   globalData: {
     isConnected: true, // 网络状态
     userInfo: null, // 用户信息

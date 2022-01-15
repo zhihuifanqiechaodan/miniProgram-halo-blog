@@ -1,4 +1,6 @@
 // components/custom-nav-bar/index.js
+const { navigateBack } = getApp();
+
 Component({
   options: {
     styleIsolation: "shared",
@@ -67,5 +69,12 @@ Component({
   /**
    * 组件的方法列表
    */
-  methods: {},
+  methods: {
+    /**
+     * @method navigateBack 返回上一页
+     */
+    navigateBack() {
+      navigateBack();
+    },
+  },
 });

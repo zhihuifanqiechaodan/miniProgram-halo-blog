@@ -1,4 +1,5 @@
 // components/custom-html/index.js
+import { baseUrl } from "../../config/index.js";
 Component({
   /**
    * 组件的属性列表
@@ -13,7 +14,7 @@ Component({
   data: {
     containerStyle: {}, // 设置容器的样式
     copyLink: true, // 是否允许外部链接被点击时自动复制
-    domain: "", // 主域名（用于链接拼接）
+    domain: baseUrl, // 主域名（用于链接拼接）
     errorImg: "", // 图片出错时的占位图链接
     lazyLoad: true, // 是否开启图片懒加载
     loadingImg: "", // 图片加载过程中的占位图链接
@@ -36,31 +37,116 @@ Component({
      */
     initHtmlStyle() {
       this.setData({
-        containerStyle:
-          "margin: 20rpx; padding:10px;font-size: 16px;color: #353535;word-spacing: 0.8px;letter-spacing: 0.8px;border-radius: 16px;background-color:#FFFFFF;",
+        containerStyle: `
+          padding: 0 40rpx;
+          word-break: break-word;
+          line-height: 1.75;
+          font-size: 28rpx;
+          font-weight: 400;
+          color: #031c24;
+          font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+          background-color: #FFFFFF;`,
         tagStyle: {
-          table:
-            "border-collapse:collapse;border-top:1px solid gray;border-left:1px solid gray;margin: 28rpx 0;",
-          th:
-            "border-right:1px solid gray;border-bottom:1px solid gray;background: #ccc;",
-          td: "border-right:1px solid gray;border-bottom:1px solid gray;",
-          blockquote:
-            " display: block;padding: 15px 1rem;font-size: 0.8em;padding-right: 15px;margin: 0.5em 0;border-left: 6px solid #dce6f0;background: #f2f7fb;overflow: auto;overflow-scrolling: touch; word-wrap: normal;word-break: normal;",
-          ul: "padding-left: 15px;line-height: 1.85;",
-          ol: "padding-left: 15px;line-height: 1.85;",
-          li: "margin-bottom: 12px;line-height: 1.85;",
-          h1:
-            "font-size: 1.5em;line-height: 50px;font-weight: normal;text-align: center;",
-          h2:
-            "text-align: left;margin: 20px 10px 0px 0px;font-size: 18px;font-weight: 700;color: #222;display: inline-block;padding-left: 10px;border-left: 5px solid rgb(248, 57, 41);",
-          h3: "font-size: 0.83em;line-height: 30px;margin-top:5px",
-          h4: "font-size: 0.67em;line-height: 30px;",
-          h5: "font-size: 0.50em;line-height: 30px;",
-          p:
-            "line-height: 1.85;margin: 0.8em 0;font-size: 16px;color: #353535;",
-          code: "word-wrap:break-word;color:#EA5455 ;font-size:14px",
-          strong: "font-weight: 700;color: rgb(248, 57, 41);",
-          video: "width: 100%",
+          table: `
+            display: inline-block !important;
+            font-size: 24rpx;
+            width: auto;
+            max-width: 100%;
+            overflow: auto;
+            border: 2rpx solid #f6f6f6;
+          `,
+          thead: `
+            background: #f6f6f6;
+            color: #000;
+            text-align: left;
+          `,
+          th: `
+            padding: 24rpx 14rpx;
+            line-height: 48rpx;  
+          `,
+          td: `
+            min-width: 120rpx;
+            padding: 24rpx 14rpx;
+            line-height: 48rpx;  
+          `,
+          blockquote: `
+            color: #666;
+            padding: 2rpx 46rpx;
+            margin: 44rpx 0;
+            border-left: 8rpx solid #cbcbcb;
+            background-color: #f8f8f8;
+          `,
+          ul: `
+            padding-left: 56rpx;
+          `,
+          ol: `
+            padding-left: 56rpx;
+          `,
+          li: `
+            padding-left: 12rpx;
+            margin-bottom: 0;
+            list-style: inherit;
+            color: #031c24;
+          `,
+          h1: `
+            font-size: 48rpxpx;
+            margin-bottom: 10rpx;    
+            line-height: 1.5;
+            margin-top: 70rpx;
+            padding-bottom: 10rpx;`,
+          h2: `
+            padding-bottom: 12px;
+            margin-top: 70rpx;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ececec; 
+            font-size: 20px;    
+            line-height: 1.5;`,
+          h3: `
+            font-size: 36rpx;
+            line-height: 1.5;
+            margin-top: 70rpx;
+            margin-bottom: 20rpx;
+          `,
+          h4: `
+            margin-top: 70rpx;
+            margin-bottom: 20rpx;
+            padding-bottom: 10rpx;
+            line-height: 1.5;
+            font-size: 40rpx;
+          `,
+          h5: `
+            line-height: 1.5;
+            margin-top: 70rpx;
+            margin-bottom: 20rpx;
+            padding-bottom: 10rpx;
+            font-size: 40rpx;
+          `,
+          h6: `
+            margin-top: 10rpx;
+            line-height: 1.5;
+            margin-bottom: 20rpx;
+            padding-bottom: 10rpx;
+            font-size: 40rpx;
+          `,
+          p: `
+            line-height: inherit;
+            margin-top: 44rpx;
+            margin-bottom: 44rpx;
+          `,
+          code: `
+            font-size: 24rpx;
+            padding: 30rpx 24rpx;
+            margin: 0;
+            word-break: normal;
+            display: block;
+            overflow-x: auto;
+          `,
+          strong: `
+            font-weight: bolder;
+          `,
+          video: `
+            width: 100%;
+          `,
         },
       });
     },
