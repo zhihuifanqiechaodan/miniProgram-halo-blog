@@ -3,6 +3,6 @@
 
 
 "@vant/weapp@^1.10.1":
-  version "1.10.1"
-  resolved "https://registry.npmmirror.com/@vant/weapp/download/@vant/weapp-1.10.1.tgz#27826903ea2d227c47f32cc1381910b502acd9ba"
-  integrity sha512-IdD57pOfhqtzL1LiNLVpCTmSClSX1YyBSy2yLk81KZTjjqFePPNZriSxmx2vdns+S/JpwsQFQ1PprdxD2+Rd9w==
+  version "1.10.2"
+  resolved "https://registry.npmmirror.com/@vant/weapp/download/@vant/weapp-1.10.2.tgz#013fbf2fdc6d59d9e92bb82a0f772f032fb52945"
+  integrity sha512-caqA0xQxM4lMRncFsRPPVMDdEzUBCJ4xdFXuKReXpEU3qwnVIP/WIjVDIi7mWyS7xqz8C9WfSW5JL4PrlSq31w==

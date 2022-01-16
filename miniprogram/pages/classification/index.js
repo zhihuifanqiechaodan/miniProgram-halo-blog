@@ -15,6 +15,7 @@ Page({
   data: {
     tabs: [], // 分类列表
     currentTab: 0, // 默认展示的tab下标
+    articles: null, // 文章列表详情
   },
 
   /**
@@ -68,7 +69,17 @@ Page({
    * @method haloGetApiContentCategoriesPosts 获取halo博客分类文章列表
    */
   haloGetApiContentCategoriesPosts() {
-    return getService("CategoriesService").haloGetApiContentCategoriesPosts();
+    const { page, size } = this._data;
+    const { currentTab, tabs } = this.data;
+    const tabInfo = tabs[currentTab];
+    const { name } = tabInfo;
+    return getService("CategoriesService").haloGetApiContentCategoriesPosts(
+      {
+        page,
+        size,
+      },
+      name
+    );
   },
   /**
    * @method haloGetApiContentStatistics 获取halo博客文章
@@ -93,7 +104,7 @@ Page({
       };
     });
     tabs.unshift({
-      id: "",
+      id: -1,
       name: "全部",
     });
     this.setData({
@@ -103,5 +114,32 @@ Page({
     this.setData({
       articles,
     });
+  },
+  async tabsChange(e) {
+    const { index } = e.detail;
+    this.setData({
+      currentTab: index,
+    });
+    this.setData({
+      articles: null,
+    });
+    this.initParams();
+    // 指定分类
+    if (index) {
+      const articles = await this.haloGetApiContentCategoriesPosts();
+      this.setData({
+        articles,
+      });
+      // 全部
+    } else {
+      const articles = await this.haloGetApiContentPosts();
+      this.setData({
+        articles,
+      });
+    }
+  },
+  initParams() {
+    this._data.page = 0;
+    this._data.size = 5;
   },
 });

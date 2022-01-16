@@ -17,6 +17,12 @@
                     "pathName": "packageA/pages/article-detail/index",
                     "query": "id=4",
                     "scene": null
+                },
+                {
+                    "name": "分类",
+                    "pathName": "pages/classification/index",
+                    "query": "",
+                    "scene": null
                 }
             ]
         }

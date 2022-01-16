@@ -2,20 +2,24 @@
 <view class="classification-container">
 	<custom-nav-bar title="welcome" placeholder="{{true}}" customStyle="background: rgba(255, 255, 255, 1)" />
 
-	<van-tabs active="{{currentTab}}">
+	<van-tabs
+	 bind:change="tabsChange"
+	 active="{{currentTab}}"
+	 animated
+	 swipeable
+	>
 		<van-tab
 		 wx:for="{{tabs}}"
 		 wx:for-index="tabsIndex"
 		 wx:for-item="tabsItem"
-		 wx:key="tabsIndex"
+		 wx:key="id"
 		 title="{{tabsItem.name}}"
-		 name="{{tabsItem.id}}"
 		>
 			<block
 			 wx:for="{{articles.content}}"
 			 wx:for-index="articlesIndex"
 			 wx:for-item="articlesItem"
-			 wx:key="{{articlesItem.id}}"
+			 wx:key="id"
 			>
 				<custom-article articleInfo="{{articlesItem}}" />
 			</block>
