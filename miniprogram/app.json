@@ -28,12 +28,14 @@
     "van-toast": "@vant/weapp/toast/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
+    "van-loading": "@vant/weapp/loading/index",
     "custom-nav-bar": "./components/custom-nav-bar/index",
     "custom-image": "./components/custom-image/index",
     "custom-iconfont": "./components/custom-iconfont/index",
     "custom-goods": "./components/custom-goods/index",
     "custom-article": "./components/custom-article/index",
-    "custom-nomore": "./components/custom-nomore/index"
+    "custom-nomore": "./components/custom-nomore/index",
+    "custom-more": "./components/custom-more/index"
   },
   "window": {
     "navigationBarTitleText": "Fabrique",

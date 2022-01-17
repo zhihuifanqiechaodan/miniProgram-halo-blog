@@ -1,14 +1,9 @@
 // pages/classification/index.js
-const { getService } = getApp();
+import Toast from "@vant/weapp/toast/toast";
+
+const { getService, systemInfo } = getApp();
 
 Page({
-  /**
-   * 页面的私有数据，不涉及到页面渲染的数据
-   */
-  _data: {
-    page: 0, // 页码
-    size: 5, // 数量
-  },
   /**
    * 页面的初始数据
    */
@@ -16,6 +11,7 @@ Page({
     tabs: [], // 分类列表
     currentTab: 0, // 默认展示的tab下标
     articles: null, // 文章列表详情
+    systemInfo, // 设备信息
   },
 
   /**
@@ -63,83 +59,180 @@ Page({
    * @method haloGetApiContentCategories 获取halo博客分类
    */
   haloGetApiContentCategories() {
-    return getService("CategoriesService").haloGetApiContentCategories();
+    return new Promise(async (reslove, reject) => {
+      const categories = await getService(
+        "CategoriesService"
+      ).haloGetApiContentCategories();
+      const tabs = categories.map((item) => {
+        return {
+          name: item.name,
+        };
+      });
+      tabs.unshift({
+        name: "全部",
+      });
+      tabs.forEach((item, index) => {
+        item.index = index;
+        item.page = 0; // 页码
+        item.size = 10; // 页码
+        item.data = []; // 商品列表
+        item.empty = false; // 数据状态, 用于初次加载没有数据展示
+        item.nomore = false; // 没有更多
+        item.lowerLoading = false; // 上拉加载状态
+        item.refresherTriggered = false; // 下拉刷新状态
+      });
+      reslove(tabs);
+    });
   },
   /**
    * @method haloGetApiContentCategoriesPosts 获取halo博客分类文章列表
    */
   haloGetApiContentCategoriesPosts() {
-    const { page, size } = this._data;
-    const { currentTab, tabs } = this.data;
-    const tabInfo = tabs[currentTab];
-    const { name } = tabInfo;
-    return getService("CategoriesService").haloGetApiContentCategoriesPosts(
-      {
-        page,
-        size,
-      },
-      name
-    );
+    return new Promise(async (reslove, reject) => {
+      const { currentTab, tabs } = this.data;
+      const tabInfo = tabs[currentTab];
+      const { name, page, size } = tabInfo;
+      const articles = await getService(
+        "CategoriesService"
+      ).haloGetApiContentCategoriesPosts(
+        {
+          page,
+          size,
+        },
+        name
+      );
+      reslove(articles);
+    });
   },
   /**
    * @method haloGetApiContentStatistics 获取halo博客文章
    */
   haloGetApiContentPosts() {
-    const { page, size } = this._data;
-    return getService("PostsService").haloGetApiContentPosts({
-      page,
-      sort: "topPriority,createTime,desc",
-      size,
+    return new Promise(async (reslove, reject) => {
+      const { currentTab, tabs } = this.data;
+      const tabsInfo = tabs[currentTab];
+      const { page, size } = tabsInfo;
+      const articles = await getService("PostsService").haloGetApiContentPosts({
+        page,
+        sort: "topPriority,createTime,desc",
+        size,
+      });
+      reslove(articles);
     });
   },
   /**
    * @method initData 初始化数据
    */
   async initData() {
-    const categories = await this.haloGetApiContentCategories();
-    const tabs = categories.map((item) => {
-      return {
-        id: item.id,
-        name: item.name,
-      };
+    Toast.loading({
+      message: "加载中...",
+      duration: 0,
+      forbidClick: true,
     });
-    tabs.unshift({
-      id: -1,
-      name: "全部",
-    });
+    const { currentTab } = this.data;
+    const tabs = await this.haloGetApiContentCategories();
     this.setData({
       tabs,
     });
-    const articles = await this.haloGetApiContentPosts();
+    const articles = currentTab
+      ? await this.haloGetApiContentCategoriesPosts()
+      : await this.haloGetApiContentPosts();
+    const { content, isEmpty, isLast } = articles;
+    const key = `tabs[${currentTab}].data`;
+    const key1 = `tabs[${currentTab}].empty`;
+    const key2 = `tabs[${currentTab}].nomore`;
     this.setData({
-      articles,
+      [key]: content,
+      [key1]: isEmpty,
+      [key2]: isLast,
     });
+    Toast.clear();
   },
+  /**
+   * @method tabsChange 分类切换
+   * @param {*} e
+   */
   async tabsChange(e) {
-    const { index } = e.detail;
+    const { index: currentTab } = e.detail;
+    const { tabs } = this.data;
+    const tabsInfo = tabs[currentTab];
+    const { data } = tabsInfo;
     this.setData({
-      currentTab: index,
+      currentTab,
     });
-    this.setData({
-      articles: null,
-    });
-    this.initParams();
-    // 指定分类
-    if (index) {
-      const articles = await this.haloGetApiContentCategoriesPosts();
-      this.setData({
-        articles,
+    // 数据不存在，重新请求一次
+    if (!data.length) {
+      Toast.loading({
+        message: "加载中...",
+        duration: 0,
+        forbidClick: true,
       });
-      // 全部
-    } else {
-      const articles = await this.haloGetApiContentPosts();
+      const articles = currentTab
+        ? await this.haloGetApiContentCategoriesPosts()
+        : await this.haloGetApiContentPosts();
+      const { content, isEmpty, isLast } = articles;
+      const key = `tabs[${currentTab}].data`;
+      const key1 = `tabs[${currentTab}].empty`;
+      const key2 = `tabs[${currentTab}].nomore`;
       this.setData({
-        articles,
+        [key]: content,
+        [key1]: isEmpty,
+        [key2]: isLast,
       });
+      Toast.clear();
     }
   },
-  initParams() {
-    this._data.page = 0;
-    this._data.size = 5;
+  /**
+   * @method scrolltolower 滚动到底部
+   */
+  async scrolltolower() {
+    const { currentTab } = this.data;
+    const { tabs } = this.data;
+    const tabsInfo = tabs[currentTab];
+    const { data, nomore, lowerLoading, page } = tabsInfo;
+    const key = `tabs[${currentTab}].data`;
+    const key1 = `tabs[${currentTab}].empty`;
+    const key2 = `tabs[${currentTab}].nomore`;
+    const key3 = `tabs[${currentTab}].page`;
+    const key4 = `tabs[${currentTab}].lowerLoading`;
+    if (nomore || lowerLoading) return;
+    this.setData({
+      [key3]: page + 1,
+      [key4]: true,
+    });
+    const articles = currentTab
+      ? await this.haloGetApiContentCategoriesPosts()
+      : await this.haloGetApiContentPosts();
+    const { content, isEmpty, isLast } = articles;
+    this.setData({
+      [key]: data.concat(content),
+      [key1]: isEmpty,
+      [key2]: isLast,
+      [key4]: false,
+    });
+  },
+  /**
+   * @method refresherrefresh 下拉刷新
+   */
+  async refresherrefresh() {
+    const { currentTab } = this.data;
+    const key = `tabs[${currentTab}].data`;
+    const key1 = `tabs[${currentTab}].empty`;
+    const key2 = `tabs[${currentTab}].nomore`;
+    const key3 = `tabs[${currentTab}].refresherTriggered`;
+    const key4 = `tabs[${currentTab}].page`;
+    this.setData({
+      [key4]: 0,
+    });
+    const articles = currentTab
+      ? await this.haloGetApiContentCategoriesPosts()
+      : await this.haloGetApiContentPosts();
+    const { content, isEmpty, isLast } = articles;
+    this.setData({
+      [key]: content,
+      [key1]: isEmpty,
+      [key2]: isLast,
+      [key3]: false,
+    });
   },
 });

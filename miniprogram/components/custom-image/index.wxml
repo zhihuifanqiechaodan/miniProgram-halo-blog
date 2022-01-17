@@ -15,12 +15,12 @@
 
 	<view wx:if="{{ loading && showLoading }}" class="loading-class custom-image__loading">
 		<slot wx:if="{{ useLoadingSlot }}" name="loading" />
-		<view wx:else class="custom-image__loading-icon">自定义图片加载中样式</view>
+		<view wx:else class="custom-image__loading-icon"></view>
 	</view>
 
 	<view wx:if="{{ error && showError }}" class="error-class custom-image__error">
 		<slot wx:if="{{ useErrorSlot }}" name="error" />
-		<view wx:else class="custom-image__error-icon">自定义图片加载失败样式</view>
+		<view wx:else class="custom-image__error-icon"></view>
 	</view>
 </view>
 

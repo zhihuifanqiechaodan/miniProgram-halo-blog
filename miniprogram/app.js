@@ -33,6 +33,17 @@ App({
       this.globalData.isConnected = isConnected;
     });
 
+    // 获取设备信息
+    const systemInfo = wx.getSystemInfoSync();
+    // 获取菜单按钮（右上角胶囊按钮）的布局位置信息。坐标信息以屏幕左上角为原点。
+    const menuButton = wx.getMenuButtonBoundingClientRect();
+    // 自定义navbar高度等于safeArea.top加上var-navbar固定高度46
+    systemInfo.navbarHeight = systemInfo.safeArea.top + 46;
+    // 存储胶囊布局信息
+    systemInfo.menuButton = menuButton;
+    // 全局存储设备信息
+    this.systemInfo = systemInfo;
+
     this.haloGetApiContentUsersProfile();
   },
   /**
@@ -56,6 +67,7 @@ App({
   ...utils, // 解构挂载公共方法
   getService, // 封装挂载请求方法
   router, // 路由表
+  systemInfo: null, // 设备信息
   globalData: {
     isConnected: true, // 网络状态
     userInfo: null, // 用户信息
