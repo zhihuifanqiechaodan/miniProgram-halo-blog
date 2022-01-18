@@ -1,5 +1,5 @@
 // pages/home/index.js
-const { getService } = getApp();
+const { getService, dayjs } = getApp();
 
 Page({
   /**
@@ -84,18 +84,36 @@ Page({
    * @method haloGetApiContentStatistics 获取halo博客统计信息
    */
   haloGetApiContentStatistics() {
-    return getService("StatisticsService").haloGetApiContentStatistics();
+    return new Promise(async (reslove, reject) => {
+      try {
+        const response = await getService(
+          "StatisticsService"
+        ).haloGetApiContentStatistics();
+        reslove(response);
+      } catch (error) {}
+    });
   },
   /**
-   * @method haloGetApiContentStatistics 获取halo博客文章
+   * @method haloGetApiContentPosts 获取halo博客文章
    * @param {*} params
    */
   haloGetApiContentPosts(params) {
-    const { page, sort, size } = params;
-    return getService("PostsService").haloGetApiContentPosts({
-      page,
-      sort,
-      size,
+    return new Promise(async (reslove, reject) => {
+      try {
+        const { page, sort, size } = params;
+        const response = await getService(
+          "PostsService"
+        ).haloGetApiContentPosts({
+          page,
+          sort,
+          size,
+        });
+        const { content } = response;
+        content.forEach((item) => {
+          item.createTime = dayjs(item.createTime).format('YYYY-MM-DD');
+        });
+        reslove(response);
+      } catch (error) {}
     });
   },
   /**

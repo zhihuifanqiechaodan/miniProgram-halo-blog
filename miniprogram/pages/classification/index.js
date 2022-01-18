@@ -5,6 +5,12 @@ const { getService, systemInfo } = getApp();
 
 Page({
   /**
+   * 页面的私有数据，不涉及到页面渲染的数据
+   */
+  _data: {
+    refreshInfo: null, // 刷新详情
+  },
+  /**
    * 页面的初始数据
    */
   data: {
@@ -12,6 +18,7 @@ Page({
     currentTab: 0, // 默认展示的tab下标
     articles: null, // 文章列表详情
     systemInfo, // 设备信息
+    brokenNetwork: false, // 网络状态
   },
 
   /**
@@ -60,28 +67,39 @@ Page({
    */
   haloGetApiContentCategories() {
     return new Promise(async (reslove, reject) => {
-      const categories = await getService(
-        "CategoriesService"
-      ).haloGetApiContentCategories();
-      const tabs = categories.map((item) => {
-        return {
-          name: item.name,
+      try {
+        const categories = await getService(
+          "CategoriesService"
+        ).haloGetApiContentCategories();
+        const tabs = categories.map((item) => {
+          return {
+            name: item.name,
+          };
+        });
+        tabs.unshift({
+          name: "全部",
+        });
+        tabs.forEach((item, index) => {
+          item.index = index;
+          item.page = 0; // 页码
+          item.size = 10; // 页码
+          item.data = []; // 商品列表
+          item.empty = false; // 数据状态, 用于初次加载没有数据展示
+          item.nomore = false; // 没有更多
+          item.lowerLoading = false; // 上拉加载状态
+          item.refresherTriggered = false; // 下拉刷新状态
+        });
+        reslove(tabs);
+      } catch (error) {
+        Toast.clear();
+        this._data.refreshInfo = {
+          method: "initData",
+          params: {},
         };
-      });
-      tabs.unshift({
-        name: "全部",
-      });
-      tabs.forEach((item, index) => {
-        item.index = index;
-        item.page = 0; // 页码
-        item.size = 10; // 页码
-        item.data = []; // 商品列表
-        item.empty = false; // 数据状态, 用于初次加载没有数据展示
-        item.nomore = false; // 没有更多
-        item.lowerLoading = false; // 上拉加载状态
-        item.refresherTriggered = false; // 下拉刷新状态
-      });
-      reslove(tabs);
+        this.setData({
+          brokenNetwork: true,
+        });
+      }
     });
   },
   /**

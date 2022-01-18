@@ -1,13 +1,14 @@
 /* pages/home/index.wxss */
-.banner-wrapper {
-  margin-bottom: 10px;
-  padding: 20px 0;
+.title-welcome {
+  padding: 20rpx 40rpx;
+  margin-bottom: 20rpx;
   background-color: #ffffff;
 }
 
-.title-welcome {
-  padding: 0 40rpx;
-  padding-bottom: 20px;
+.swiper-wrapper {
+  padding: 20rpx 0;
+  margin-bottom: 20rpx;
+  background-color: #ffffff;
 }
 
 .color-secondary {
@@ -30,44 +31,24 @@
   border-radius: 20rpx !important;
 }
 
-.article-wrapper {
-  background-color: #ffffff;
-}
-
 .sort-title {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 40rpx;
-  border-bottom: 1px solid #f4f5f5;
+  padding: 20rpx 40rpx;
+  margin-bottom: 20rpx;
   box-sizing: border-box;
-}
-
-.sort-desc {
-  display: flex;
-  flex-direction: column;
+  background-color: #ffffff;
 }
 
 .latest-article {
-  font-size: 40rpx;
+  font-size: 28rpx;
   font-weight: 600;
 }
 
-.latest-desc {
-  font-size: 24rpx;
-  color: #9498ac;
-}
-
 .new-gradient-anime {
-  min-width: 57px;
-  height: 30px;
-  font-size: 13px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 6px;
   border-radius: 8px;
-  color: #fff;
+  color: transparent;
+  -webkit-background-clip: text;
   background-position: 0 0;
   background-size: 600%;
   background-image: linear-gradient(

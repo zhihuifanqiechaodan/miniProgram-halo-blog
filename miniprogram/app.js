@@ -3,6 +3,7 @@ import { getService } from "./api/index";
 import utils from "./utils/index";
 import router from "./utils/router";
 import { baseUrl, apiAccessKey } from "./config/index";
+import dayjs from "dayjs";
 
 App({
   onLaunch: function () {
@@ -64,6 +65,7 @@ App({
       },
     });
   },
+  dayjs, // 时间格式处理
   ...utils, // 解构挂载公共方法
   getService, // 封装挂载请求方法
   router, // 路由表
