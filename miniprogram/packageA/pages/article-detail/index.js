@@ -1,5 +1,5 @@
 // packageA/pages/article-detail/index.js
-const { getService, globalData } = getApp();
+const { getService, globalData, dayjs, isExternal, baseUrl } = getApp();
 
 Page({
   /**
@@ -67,14 +67,28 @@ Page({
    * @method haloGetApiContentStatistics 获取halo博客文章
    */
   haloGetApiContentPosts() {
-    const { id } = this._data;
-    return getService("PostsService").haloGetApiContentPosts(
-      {
-        formatDisabled: false,
-        sourceDisabled: true,
-      },
-      id
-    );
+    return new Promise(async (reslove, reject) => {
+      try {
+        const { id } = this._data;
+        const response = await getService(
+          "PostsService"
+        ).haloGetApiContentPosts(
+          {
+            formatDisabled: false,
+            sourceDisabled: true,
+          },
+          id
+        );
+        const { thumbnail, createTime } = response;
+        response.thumbnail = isExternal(thumbnail)
+          ? thumbnail
+          : baseUrl + thumbnail;
+        response.createTime = dayjs(createTime).format("YYYY-MM-DD");
+        reslove(response);
+      } catch (error) {
+        console.log(error);
+      }
+    });
   },
   /**
    * @method initData 初始化数据
@@ -84,6 +98,5 @@ Page({
     this.setData({
       articleInfo,
     });
-    console.log(articleInfo);
   },
 });

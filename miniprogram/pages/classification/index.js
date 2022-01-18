@@ -1,7 +1,7 @@
 // pages/classification/index.js
 import Toast from "@vant/weapp/toast/toast";
 
-const { getService, systemInfo } = getApp();
+const { getService, systemInfo, dayjs, isExternal, baseUrl } = getApp();
 
 Page({
   /**
@@ -110,7 +110,7 @@ Page({
       const { currentTab, tabs } = this.data;
       const tabInfo = tabs[currentTab];
       const { name, page, size } = tabInfo;
-      const articles = await getService(
+      const response = await getService(
         "CategoriesService"
       ).haloGetApiContentCategoriesPosts(
         {
@@ -119,7 +119,14 @@ Page({
         },
         name
       );
-      reslove(articles);
+      const { content } = response;
+      content.forEach((item) => {
+        item.createTime = dayjs(item.createTime).format("YYYY-MM-DD");
+        item.thumbnail = isExternal(item.thumbnail)
+          ? item.thumbnail
+          : baseUrl + item.thumbnail;
+      });
+      reslove(response);
     });
   },
   /**
@@ -130,12 +137,19 @@ Page({
       const { currentTab, tabs } = this.data;
       const tabsInfo = tabs[currentTab];
       const { page, size } = tabsInfo;
-      const articles = await getService("PostsService").haloGetApiContentPosts({
+      const response = await getService("PostsService").haloGetApiContentPosts({
         page,
         sort: "topPriority,createTime,desc",
         size,
       });
-      reslove(articles);
+      const { content } = response;
+      content.forEach((item) => {
+        item.createTime = dayjs(item.createTime).format("YYYY-MM-DD");
+        item.thumbnail = isExternal(item.thumbnail)
+          ? item.thumbnail
+          : baseUrl + item.thumbnail;
+      });
+      reslove(response);
     });
   },
   /**

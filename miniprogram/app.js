@@ -60,12 +60,16 @@ App({
         const { data: response } = value;
         const { data, status } = response;
         if (status === 200) {
+          const { avatar, createTime } = data;
+          data.avatar = utils.isExternal(avatar) ? avatar : baseUrl + avatar;
+          data.createTime = dayjs(createTime).format("YYYY-MM-DD");
           this.globalData.userInfo = data;
         }
       },
     });
   },
   dayjs, // 时间格式处理
+  baseUrl, // halo博客域名
   ...utils, // 解构挂载公共方法
   getService, // 封装挂载请求方法
   router, // 路由表

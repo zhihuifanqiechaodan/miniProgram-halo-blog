@@ -1,5 +1,5 @@
 // pages/home/index.js
-const { getService, dayjs } = getApp();
+const { getService, dayjs, isExternal, baseUrl } = getApp();
 
 Page({
   /**
@@ -110,10 +110,19 @@ Page({
         });
         const { content } = response;
         content.forEach((item) => {
-          item.createTime = dayjs(item.createTime).format('YYYY-MM-DD');
+          item.createTime = dayjs(item.createTime).format("YYYY-MM-DD");
+          item.thumbnail = isExternal(item.thumbnail)
+            ? item.thumbnail
+            : baseUrl + item.thumbnail;
         });
         reslove(response);
-      } catch (error) {}
+      } catch (error) {
+        console.error(
+          "========================👇 请求错误 👇========================\n\n",
+          error,
+          "\n\n"
+        );
+      }
     });
   },
   /**

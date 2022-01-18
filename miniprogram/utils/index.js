@@ -47,7 +47,17 @@ const navigateBack = (delta = 1) => {
   });
 };
 
+/**
+ * @method isExternal 外部链接判断
+ * @param {string} path
+ * @returns {Boolean}
+ */
+const isExternal = (path) => {
+  return /^(https?:|mailto:|tel:)/.test(path);
+};
+
 export default {
   navigateTo,
   navigateBack,
+  isExternal,
 };
