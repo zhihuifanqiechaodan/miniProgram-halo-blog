@@ -1,5 +1,5 @@
 // pages/home/index.js
-const { getService, dayjs, isExternal, baseUrl } = getApp();
+const { getService, dayjs, isExternal, haloBaseUrl } = getApp();
 
 Page({
   /**
@@ -113,7 +113,7 @@ Page({
           item.createTime = dayjs(item.createTime).format("YYYY-MM-DD");
           item.thumbnail = isExternal(item.thumbnail)
             ? item.thumbnail
-            : baseUrl + item.thumbnail;
+            : haloBaseUrl + item.thumbnail;
         });
         reslove(response);
       } catch (error) {

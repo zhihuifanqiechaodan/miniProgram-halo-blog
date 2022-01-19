@@ -1,4 +1,4 @@
-import { baseUrl } from "../config/index";
+import { haloBaseUrl } from "../config/index";
 import { haloGet } from "./httpclient-service";
 
 /**
@@ -7,7 +7,7 @@ import { haloGet } from "./httpclient-service";
  */
 const haloGetApiContentStatistics = (data = {}) => {
   return haloGet({
-    url: baseUrl + "/api/content/statistics",
+    url: haloBaseUrl + "/api/content/statistics",
     data,
   });
 };

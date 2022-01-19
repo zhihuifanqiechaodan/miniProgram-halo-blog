@@ -2,7 +2,7 @@
 import { getService } from "./api/index";
 import utils from "./utils/index";
 import router from "./utils/router";
-import { baseUrl, apiAccessKey } from "./config/index";
+import { haloBaseUrl, apiAccessKey } from "./config/index";
 import dayjs from "dayjs";
 
 App({
@@ -52,7 +52,7 @@ App({
    */
   haloGetApiContentUsersProfile() {
     wx.request({
-      url: `${baseUrl}/api/content/users/profile`,
+      url: `${haloBaseUrl}/api/content/users/profile`,
       data: {
         api_access_key: apiAccessKey,
       },
@@ -61,7 +61,7 @@ App({
         const { data, status } = response;
         if (status === 200) {
           const { avatar, createTime } = data;
-          data.avatar = utils.isExternal(avatar) ? avatar : baseUrl + avatar;
+          data.avatar = utils.isExternal(avatar) ? avatar : haloBaseUrl + avatar;
           data.createTime = dayjs(createTime).format("YYYY-MM-DD");
           this.globalData.userInfo = data;
         }
@@ -69,7 +69,7 @@ App({
     });
   },
   dayjs, // 时间格式处理
-  baseUrl, // halo博客域名
+  haloBaseUrl, // halo博客域名
   ...utils, // 解构挂载公共方法
   getService, // 封装挂载请求方法
   router, // 路由表

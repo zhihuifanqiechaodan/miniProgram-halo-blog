@@ -1,5 +1,5 @@
 // packageA/pages/article-detail/index.js
-const { getService, globalData, dayjs, isExternal, baseUrl } = getApp();
+const { getService, globalData, dayjs, isExternal, haloBaseUrl } = getApp();
 
 Page({
   /**
@@ -82,7 +82,7 @@ Page({
         const { thumbnail, createTime } = response;
         response.thumbnail = isExternal(thumbnail)
           ? thumbnail
-          : baseUrl + thumbnail;
+          : haloBaseUrl + thumbnail;
         response.createTime = dayjs(createTime).format("YYYY-MM-DD");
         reslove(response);
       } catch (error) {

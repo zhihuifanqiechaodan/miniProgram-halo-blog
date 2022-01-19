@@ -1,26 +1,27 @@
 <!--pages/classification/index.wxml-->
 <view class="classification-container">
 	<custom-nav-bar title="welcome" placeholder="{{true}}" customStyle="background: rgba(255, 255, 255, 1)" />
-	<scroll-view
-	 bindscrolltolower="scrolltolower"
-	 bindrefresherrefresh="refresherrefresh"
-	 scroll-y
-	 refresher-enabled
-	 refresher-triggered="{{tabs[currentTab].refresherTriggered}}"
-	 style="height: calc(100vh - {{ systemInfo.navbarHeight }}px)"
+	<van-tabs
+	 bind:change="tabsChange"
+	 active="{{currentTab}}"
+	 animated
+	 swipeable
 	>
-		<van-tabs
-		 bind:change="tabsChange"
-		 active="{{currentTab}}"
-		 animated
-		 swipeable
+		<van-tab
+		 wx:for="{{tabs}}"
+		 wx:for-index="tabsIndex"
+		 wx:for-item="tabsItem"
+		 wx:key="id"
+		 title="{{tabsItem.name}}"
 		>
-			<van-tab
-			 wx:for="{{tabs}}"
-			 wx:for-index="tabsIndex"
-			 wx:for-item="tabsItem"
-			 wx:key="id"
-			 title="{{tabsItem.name}}"
+			<scroll-view
+			 bindscrolltolower="scrolltolower"
+			 bindrefresherrefresh="refresherrefresh"
+			 scroll-y
+			 refresher-enabled
+			 refresher-triggered="{{tabs[currentTab].refresherTriggered}}"
+			 style="height: calc(100vh - {{ systemInfo.navbarHeight + 44 }}px)"
+			 class="scroll-view"
 			>
 				<block
 				 wx:for="{{tabs[currentTab].data}}"
@@ -32,9 +33,11 @@
 				</block>
 				<custom-more wx:if="{{tabs[currentTab].lowerLoading}}" />
 				<custom-nomore wx:if="{{tabs[currentTab].nomore}}" />
-			</van-tab>
-		</van-tabs>
-	</scroll-view>
+			</scroll-view>
+
+		</van-tab>
+	</van-tabs>
+
 </view>
 
 <van-toast id="van-toast" />

@@ -1,5 +1,5 @@
 // components/custom-html/index.js
-import { baseUrl } from "../../config/index.js";
+import { haloBaseUrl } from "../../config/index.js";
 Component({
   /**
    * 组件的属性列表
@@ -14,7 +14,7 @@ Component({
   data: {
     containerStyle: {}, // 设置容器的样式
     copyLink: true, // 是否允许外部链接被点击时自动复制
-    domain: baseUrl, // 主域名（用于链接拼接）
+    domain: haloBaseUrl, // 主域名（用于链接拼接）
     errorImg: "", // 图片出错时的占位图链接
     lazyLoad: true, // 是否开启图片懒加载
     loadingImg: "", // 图片加载过程中的占位图链接
