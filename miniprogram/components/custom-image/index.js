@@ -56,20 +56,21 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    onLoad: function (event) {
+    onLoad(event) {
       this.setData({
         loading: false,
       });
       this.triggerEvent("load", event.detail);
     },
-    onError: function (event) {
+    onError(event) {
       this.setData({
         loading: false,
         error: true,
       });
       this.triggerEvent("error", event.detail);
+      console.log("图片加载失败", event);
     },
-    onClick: function (event) {
+    onClick(event) {
       this.triggerEvent("click", event.detail);
     },
   },

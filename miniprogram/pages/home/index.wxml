@@ -1,6 +1,6 @@
 <!--pages/home/index.wxml-->
 <view class="home-container">
-	<custom-nav-bar title="welcome" placeholder="{{true}}" customStyle="background: rgba(255, 255, 255, 1)" />
+	<custom-nav-bar title="番茄博客园" placeholder="{{true}}" customStyle="background: rgba(255, 255, 255, 1)" />
 
 	<!-- banner -->
 	<view class="banner-wrapper">
