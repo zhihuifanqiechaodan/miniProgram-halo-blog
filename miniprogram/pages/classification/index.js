@@ -74,6 +74,7 @@ Page({
         const tabs = categories.map((item) => {
           return {
             name: item.name,
+            slug: item.slug,
           };
         });
         tabs.unshift({
@@ -109,7 +110,7 @@ Page({
     return new Promise(async (reslove, reject) => {
       const { currentTab, tabs } = this.data;
       const tabInfo = tabs[currentTab];
-      const { name, page, size } = tabInfo;
+      const { slug, page, size } = tabInfo;
       const response = await getService(
         "CategoriesService"
       ).haloGetApiContentCategoriesPosts(
@@ -117,7 +118,7 @@ Page({
           page,
           size,
         },
-        name
+        slug
       );
       const { content } = response;
       content.forEach((item) => {
