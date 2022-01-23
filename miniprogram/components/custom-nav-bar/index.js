@@ -1,5 +1,5 @@
 // components/custom-nav-bar/index.js
-const { navigateBack } = getApp();
+const { navigateBack, reLaunch, router } = getApp();
 
 Component({
   options: {
@@ -75,6 +75,40 @@ Component({
      */
     navigateBack() {
       navigateBack();
+      this.triggerEvent("back");
+    },
+    /**
+     * @method reLaunch 返回首页
+     */
+    reLaunch() {
+      const { Home } = router;
+      reLaunch({
+        url: Home.path,
+      });
+    },
+  },
+  lifetimes: {
+    attached() {
+      const { Home, Classification } = router;
+      // 过滤路由列表
+      const tabbarRoute = [];
+      // 首页过滤
+      tabbarRoute.push(Home.path);
+      // 商列过滤
+      tabbarRoute.push(Classification.path);
+      // 获取当前页面栈。数组中第一个元素为首页，最后一个元素为当前页面。
+      const pages = getCurrentPages();
+      // 如果当前页面栈只有一层
+      if (pages.length === 1) {
+        const route = pages[0].route;
+        // 不是tabbar页面则显示返回首页
+        if (!tabbarRoute.includes("/" + route)) {
+          this.setData({
+            isHome: true,
+            isBack: false,
+          });
+        }
+      }
     },
   },
 });

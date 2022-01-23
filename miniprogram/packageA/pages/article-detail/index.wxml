@@ -2,7 +2,7 @@
 <view class="article-detail-container">
 	<custom-nav-bar
 	 isBack="{{true}}"
-	 title="welcome"
+	 title="{{title}}"
 	 placeholder="{{true}}"
 	 customStyle="background: rgba(255, 255, 255, 1)"
 	/>

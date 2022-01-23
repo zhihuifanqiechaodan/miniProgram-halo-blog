@@ -1,4 +1,7 @@
 /* components/custom-nav-bar/index.wxss */
+@import "../../styles/index.wxss";
+
+
 .van-nav-bar .van-nav-bar__left {
   left: 0;
 }

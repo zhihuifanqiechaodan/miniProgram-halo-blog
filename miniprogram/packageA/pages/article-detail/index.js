@@ -14,6 +14,7 @@ Page({
   data: {
     articleInfo: null, // 文章详情
     userInfo: null, // 博主信息
+    title: "", // 标题
   },
 
   /**
@@ -97,6 +98,7 @@ Page({
     const articleInfo = await this.haloGetApiContentPosts();
     this.setData({
       articleInfo,
+      title: articleInfo.title,
     });
   },
 });

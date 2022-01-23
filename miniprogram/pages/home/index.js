@@ -32,6 +32,7 @@ Page({
     banners: [], // 轮播图
     statisticsInfo: null, // 博客统计信息
     articles: [], // 文章列表
+    menuPopup: false, // 菜单popup
   },
   swiperChange(event) {
     let { current } = event.detail;
@@ -144,6 +145,14 @@ Page({
       banners: bannerInfo.content,
       statisticsInfo,
       articles: postsInfo.content,
+    });
+  },
+  /**
+   * @method openMenuPopup 打开菜单popup
+   */
+  openMenuPopup() {
+    this.setData({
+      menuPopup: true,
     });
   },
 });
