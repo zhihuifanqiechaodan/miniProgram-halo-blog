@@ -10,11 +10,17 @@
       "selectedIconPath": "images/tabBar/classification-fill.png",
       "pagePath": "pages/classification/index",
       "text": ""
+    }, {
+      "iconPath": "images/tabBar/account.png",
+      "selectedIconPath": "images/tabBar/account-fill.png",
+      "pagePath": "pages/account/index",
+      "text": ""
     }]
   },
   "pages": [
     "pages/home/index",
-    "pages/classification/index"
+    "pages/classification/index",
+    "pages/account/index"
   ],
   "subPackages": [{
     "root": "packageA",

@@ -23,6 +23,12 @@
                     "pathName": "pages/classification/index",
                     "query": "",
                     "scene": null
+                },
+                {
+                    "name": "账户信息",
+                    "pathName": "pages/account/index",
+                    "query": "",
+                    "scene": null
                 }
             ]
         }

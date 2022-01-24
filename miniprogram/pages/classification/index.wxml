@@ -1,6 +1,6 @@
 <!--pages/classification/index.wxml-->
 <view class="classification-container">
-	<custom-nav-bar title="welcome" placeholder="{{true}}" customStyle="background: rgba(255, 255, 255, 1)" />
+	<custom-nav-bar title="{{title}}" placeholder="{{true}}" customStyle="background: rgba(255, 255, 255, 1)" />
 	<van-tabs
 	 bind:change="tabsChange"
 	 active="{{currentTab}}"

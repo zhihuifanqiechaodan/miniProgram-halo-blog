@@ -18,6 +18,7 @@ Page({
     currentTab: 0, // 默认展示的tab下标
     articles: null, // 文章列表详情
     systemInfo, // 设备信息
+    title: "文章分类", // 标题
     brokenNetwork: false, // 网络状态
   },
 

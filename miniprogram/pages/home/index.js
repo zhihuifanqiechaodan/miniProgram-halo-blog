@@ -32,7 +32,7 @@ Page({
     banners: [], // 轮播图
     statisticsInfo: null, // 博客统计信息
     articles: [], // 文章列表
-    menuPopup: false, // 菜单popup
+    title: "只会番茄炒蛋的博客", // 标题
   },
   swiperChange(event) {
     let { current } = event.detail;
@@ -82,19 +82,6 @@ Page({
    */
   onShareAppMessage: function () {},
   /**
-   * @method haloGetApiContentStatistics 获取halo博客统计信息
-   */
-  haloGetApiContentStatistics() {
-    return new Promise(async (reslove, reject) => {
-      try {
-        const response = await getService(
-          "StatisticsService"
-        ).haloGetApiContentStatistics();
-        reslove(response);
-      } catch (error) {}
-    });
-  },
-  /**
    * @method haloGetApiContentPosts 获取halo博客文章
    * @param {*} params
    */
@@ -135,7 +122,6 @@ Page({
       sort: "visits,desc",
       size: 3,
     });
-    const statisticsInfo = await this.haloGetApiContentStatistics();
     const postsInfo = await this.haloGetApiContentPosts({
       page: 0,
       sort: "topPriority,createTime,desc",
@@ -143,16 +129,7 @@ Page({
     });
     this.setData({
       banners: bannerInfo.content,
-      statisticsInfo,
       articles: postsInfo.content,
-    });
-  },
-  /**
-   * @method openMenuPopup 打开菜单popup
-   */
-  openMenuPopup() {
-    this.setData({
-      menuPopup: true,
     });
   },
 });

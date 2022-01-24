@@ -1,11 +1,12 @@
 <!--pages/home/index.wxml-->
 <page-meta page-style="{{ menuPopup ? 'overflow: hidden;' : '' }}">
 	<view class="home-container">
-		<custom-nav-bar isSlot="{{true}}" placeholder="{{true}}" customStyle="background: rgba(255, 255, 255, 1)">
-			<view catchtap="openMenuPopup" class="more-menu">
-				<custom-iconfont icon="icon-leftalignment" size="48rpx" />
-			</view>
-		</custom-nav-bar>
+		<custom-nav-bar
+		 isSlot="{{true}}"
+		 placeholder="{{true}}"
+		 title="{{title}}"
+		 customStyle="background: rgba(255, 255, 255, 1)"
+		/>
 
 		<!-- banner -->
 		<view class="banner-wrapper">
@@ -61,7 +62,6 @@
 
 	</view>
 
-	<menu-popup menuPopup="{{menuPopup}}" />
 	<van-toast id="van-toast" />
 </page-meta>
 

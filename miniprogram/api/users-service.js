@@ -2,7 +2,7 @@ import { haloBaseUrl } from "../config/index";
 import { haloGet } from "./httpclient-service";
 
 /**
- * @method addCnRegionAllArea 获取halo博客用户信息
+ * @method addCnRegionAllArea 获取halo博客博主信息
  * @param {*} data
  */
 const haloGetApiContentUsersProfile = (data = {}) => {
